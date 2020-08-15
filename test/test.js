@@ -450,9 +450,21 @@ test('parses similar to Gmail by default', (t) => {
   );
 });
 
-test('does not allow apostrophe in path', (t) => {
+test('apostrophes', (t) => {
   t.deepEqual(
     "background: url('http://example.com/pic.jpg');".match(urlRegex()),
     ['http://example.com/pic.jpg']
+  );
+  t.deepEqual(
+    "background: url('http://example.com/pic.jpg');".match(
+      urlRegex({ apostrophes: true })
+    ),
+    ["http://example.com/pic.jpg'"]
+  );
+  t.deepEqual(
+    "background: url('http://example.com/pic.jpg');".match(
+      urlRegex({ parens: true, apostrophes: true })
+    ),
+    ["http://example.com/pic.jpg');"]
   );
 });
