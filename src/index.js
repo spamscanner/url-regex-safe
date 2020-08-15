@@ -13,6 +13,7 @@ module.exports = (options) => {
     strict: false,
     auth: false,
     parens: false,
+    apostrophes: false,
     ipv4: true,
     ipv6: true,
     tlds,
@@ -36,7 +37,16 @@ module.exports = (options) => {
   const port = '(?::\\d{2,5})?';
   // Not accept closing parenthesis
   // <https://github.com/kevva/url-regex/pull/35>
-  const path = options.parens ? '(?:[/?#][^\\s"]*)?' : '(?:[/?#][^\\s"\\)]*)?';
+  // Don't allow apostrophes
+  // <https://github.com/kevva/url-regex/pull/55>
+  const path = options.parens
+    ? options.apostrophes
+      ? '(?:[/?#][^\\s"]*)?'
+      : '(?:[/?#][^\\s"\']*)?'
+    : options.apostrophes
+    ? '(?:[/?#][^\\s"\\)]*)?'
+    : '(?:[/?#][^\\s"\\)\']*)?';
+
   // Added IPv6 support
   // <https://github.com/kevva/url-regex/issues/60>
   let regex = `(?:${protocol}|www\\.)${auth}(?:localhost|`;

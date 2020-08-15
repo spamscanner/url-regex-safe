@@ -440,3 +440,19 @@ test('IPv6', (t) => {
   t.true(urlRegex().test('2606:4700:4700::1111'));
   t.false(urlRegex({ ipv6: false }).test('2606:4700:4700::1111'));
 });
+
+test('parses similar to Gmail by default', (t) => {
+  t.deepEqual(
+    "foo@bar.com [foo]@bar.com foo bar @foob.com 'text@example.com, some text'".match(
+      urlRegex()
+    ),
+    ['bar.com', 'bar.com', 'foob.com', 'example.com']
+  );
+});
+
+test('does not allow apostrophe in path', (t) => {
+  t.deepEqual(
+    "background: url('http://example.com/pic.jpg');".match(urlRegex()),
+    ['http://example.com/pic.jpg']
+  );
+});
