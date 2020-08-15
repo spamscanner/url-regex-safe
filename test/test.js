@@ -430,3 +430,13 @@ test('do not match URLs with non-strict mode', (t) => {
     )
   );
 });
+
+test('IPv4', (t) => {
+  t.true(urlRegex().test('1.1.1.1'));
+  t.false(urlRegex({ ipv4: false }).test('1.1.1.1'));
+});
+
+test('IPv6', (t) => {
+  t.true(urlRegex().test('2606:4700:4700::1111'));
+  t.false(urlRegex({ ipv6: false }).test('2606:4700:4700::1111'));
+});
