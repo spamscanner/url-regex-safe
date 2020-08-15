@@ -1,0 +1,90 @@
+{
+  "name": "url-regex-safe",
+  "description": "Regular expression matching for URL's. Maintained and safe version of url-regex. Resolves CVE-2020-7661.",
+  "version": "0.0.0",
+  "author": "Nick Baugh <niftylettuce@gmail.com> (http://niftylettuce.com/)",
+  "bugs": {
+    "url": "https://github.com/ladjs/url-regex-safe/issues",
+    "email": "niftylettuce@gmail.com"
+  },
+  "contributors": [
+    "Nick Baugh <niftylettuce@gmail.com> (http://niftylettuce.com/)"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "@commitlint/cli": "latest",
+    "@commitlint/config-conventional": "latest",
+    "ava": "latest",
+    "codecov": "latest",
+    "cross-env": "latest",
+    "eslint": "6.x",
+    "eslint-config-xo-lass": "latest",
+    "fixpack": "latest",
+    "husky": "latest",
+    "lint-staged": "latest",
+    "nyc": "latest",
+    "remark-cli": "latest",
+    "remark-preset-github": "latest",
+    "xo": "0.25"
+  },
+  "engines": {
+    "node": ">= 10"
+  },
+  "homepage": "https://github.com/ladjs/url-regex-safe",
+  "keywords": [
+    "2020",
+    "7661",
+    "CVE-2020-7661",
+    "cve",
+    "detect",
+    "email",
+    "emails",
+    "expresion",
+    "expression",
+    "from",
+    "get",
+    "html",
+    "mail",
+    "mails",
+    "maintained",
+    "parse",
+    "parser",
+    "parsing",
+    "regex",
+    "regexer",
+    "regexer",
+    "regexes",
+    "regexing",
+    "regexp",
+    "safe",
+    "scan",
+    "sniff",
+    "str",
+    "string",
+    "text",
+    "url",
+    "urls"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ladjs/url-regex-safe"
+  },
+  "scripts": {
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+    "lint": "yarn run lint:js && yarn run lint:md",
+    "lint:js": "xo",
+    "lint:md": "remark . -qfo",
+    "pretest": "yarn run lint",
+    "test": "cross-env NODE_ENV=test ava",
+    "test-coverage": "cross-env NODE_ENV=test nyc yarn run test"
+  },
+  "xo": {
+    "prettier": true,
+    "space": true,
+    "extends": [
+      "xo-lass"
+    ]
+  }
+}
