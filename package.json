@@ -1,6 +1,6 @@
 {
   "name": "url-regex-safe",
-  "description": "Regular expression matching for URL's. Maintained, safe, and browser-friendly version of url-regex. Resolves CVE-2020-7661.",
+  "description": "Regular expression matching for URL's. Maintained, safe, and browser-friendly version of url-regex. Resolves CVE-2020-7661. Works in Node v10.12.0+ and browsers.",
   "version": "0.0.4",
   "author": "Nick Baugh <niftylettuce@gmail.com> (http://niftylettuce.com/)",
   "browser": {
@@ -46,7 +46,7 @@
     "xo": "latest"
   },
   "engines": {
-    "node": ">= 10"
+    "node": ">= 10.12.0"
   },
   "files": [
     "lib",

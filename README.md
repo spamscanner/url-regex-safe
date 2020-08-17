@@ -8,7 +8,7 @@
 [![license](https://img.shields.io/github/license/niftylettuce/url-regex-safe.svg)](LICENSE)
 [![npm downloads](https://img.shields.io/npm/dt/url-regex-safe.svg)](https://npm.im/url-regex-safe)
 
-> Regular expression matching for URL's. Maintained, safe, and browser-friendly version of [url-regex][]. Resolves [CVE-2020-7661][cve] for Node.js servers.
+> Regular expression matching for URL's. Maintained, safe, and browser-friendly version of [url-regex][]. Resolves [CVE-2020-7661][cve] for Node.js servers. Works in Node v10.12.0+ and browsers.
 
 
 ## Table of Contents
