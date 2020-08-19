@@ -12,6 +12,7 @@ module.exports = (options) => {
     exact: false,
     strict: false,
     auth: false,
+    localhost: true,
     parens: false,
     apostrophes: false,
     ipv4: true,
@@ -50,7 +51,8 @@ module.exports = (options) => {
 
   // Added IPv6 support
   // <https://github.com/kevva/url-regex/issues/60>
-  let regex = `(?:${protocol}|www\\.)${auth}(?:localhost|`;
+  let regex = `(?:${protocol}|www\\.)${auth}(?:`;
+  if (options.localhost) regex += 'localhost|';
   if (options.ipv4) regex += `${ipv4}|`;
   if (options.ipv6) regex += `${ipv6}|`;
   regex += `${host}${domain}${tld})${port}${path}`;

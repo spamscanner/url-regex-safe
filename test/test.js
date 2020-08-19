@@ -472,3 +472,18 @@ test('apostrophes', (t) => {
 test('returns string', (t) => {
   t.true(typeof urlRegex({ returnString: true }) === 'string');
 });
+
+test('localhost', (t) => {
+  t.deepEqual(
+    "background: url('http://localhost/pic.jpg');".match(
+      urlRegex({ localhost: true })
+    ),
+    ['http://localhost/pic.jpg']
+  );
+  t.deepEqual(
+    "background: url('http://localhost/pic.jpg');".match(
+      urlRegex({ localhost: false })
+    ),
+    ['pic.jp']
+  );
+});
