@@ -468,3 +468,7 @@ test('apostrophes', (t) => {
     ["http://example.com/pic.jpg');"]
   );
 });
+
+test('returns string', (t) => {
+  t.true(typeof urlRegex({ returnString: true }) === 'string');
+});

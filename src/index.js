@@ -17,6 +17,7 @@ module.exports = (options) => {
     ipv4: true,
     ipv6: true,
     tlds,
+    returnString: false,
     ...options
   };
 
@@ -53,6 +54,9 @@ module.exports = (options) => {
   if (options.ipv4) regex += `${ipv4}|`;
   if (options.ipv6) regex += `${ipv6}|`;
   regex += `${host}${domain}${tld})${port}${path}`;
+
+  // Add option to return the regex string instead of a RegExp
+  if (options.returnString) return regex;
 
   return options.exact
     ? new SafeRegExp(`(?:^${regex}$)`, 'i')
