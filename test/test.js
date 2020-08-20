@@ -61,7 +61,14 @@ const fixtures = [
 ];
 for (const x of fixtures) {
   test(`match exact URLs: ${x}`, (t) => {
-    t.true(urlRegex({ exact: true, auth: true, parens: true }).test(x));
+    t.true(
+      urlRegex({
+        exact: true,
+        auth: true,
+        parens: true,
+        trailingPeriod: true
+      }).test(x)
+    );
   });
 }
 
@@ -203,7 +210,14 @@ for (const x of [
   '➡.ws/䨹'
 ]) {
   test(`match using list of TLDs: ${x}`, (t) => {
-    t.true(urlRegex({ exact: true, auth: true, parens: true }).test(x));
+    t.true(
+      urlRegex({
+        exact: true,
+        auth: true,
+        parens: true,
+        trailingPeriod: true
+      }).test(x)
+    );
   });
 }
 
@@ -356,7 +370,8 @@ test('match using explicit list of TLDs', (t) => {
         exact: true,
         auth: true,
         parens: true,
-        tlds: ['com', 'ws', 'de', 'net', 'mp', 'bar', 'onion', 'education']
+        tlds: ['com', 'ws', 'de', 'net', 'mp', 'bar', 'onion', 'education'],
+        trailingPeriod: true
       }).test(x)
     );
   }
@@ -485,5 +500,20 @@ test('localhost', (t) => {
       urlRegex({ localhost: false })
     ),
     ['pic.jp']
+  );
+});
+
+test('trailing period', (t) => {
+  t.deepEqual(
+    'background example.com. foobar.com'.match(
+      urlRegex({ trailingPeriod: true })
+    ),
+    ['example.com.', 'foobar.com']
+  );
+  t.deepEqual(
+    'background example.com. foobar.com'.match(
+      urlRegex({ trailingPeriod: false })
+    ),
+    ['example.com', 'foobar.com']
   );
 });

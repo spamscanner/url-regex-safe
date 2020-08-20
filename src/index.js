@@ -15,6 +15,7 @@ module.exports = (options) => {
     localhost: true,
     parens: false,
     apostrophes: false,
+    trailingPeriod: false,
     ipv4: true,
     ipv6: true,
     tlds,
@@ -35,7 +36,8 @@ module.exports = (options) => {
     options.strict
       ? '(?:[a-z\\u00a1-\\uffff]{2,})'
       : `(?:${options.tlds.sort((a, b) => b.length - a.length).join('|')})`
-  })\\.?`;
+  })${options.trailingPeriod ? '\\.?' : ''}`;
+
   const port = '(?::\\d{2,5})?';
   // Not accept closing parenthesis
   // <https://github.com/kevva/url-regex/pull/35>
