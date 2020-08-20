@@ -20,6 +20,7 @@
   * [Browser](#browser)
 * [Options](#options)
 * [Quick tips and migration from url-regex](#quick-tips-and-migration-from-url-regex)
+* [Limitations](#limitations)
 * [Contributors](#contributors)
 * [License](#license)
 
@@ -126,6 +127,11 @@ Unlike the deprecated and unmaintained package [url-regex][], we do a few things
 * We added `parens` and `ipv6` options, which are set to `true` by default ([url-regex][] had `parens` set to `true` and `ipv6` was non-existent or set to `false` rather).
 * We added an `apostrophe` option, which is set to `false` by default ([url-regex][] had this set to `true`).
 * We added a `trailingPeriod` option, which is set to `false` by default (which means matches won't contain trailing periods, whereas [url-regex][] had this set to `true`).
+
+
+## Limitations
+
+Since we cannot use regular expression's "negative lookbehinds" functionality (due to [RE2][] limitations), we could not merge the logic from this [pull request](https://github.com/kevva/url-regex/pull/67/commits/6c31d81c35c3bb72c413c6e4af92a37b2689ead2).  This would have allowed us to make it so `example.jpeg` would match only if it was `example.jp`, however if you pass `example.jpeg` right now it will extract `example.jp` from it (since `.jp` is a TLD).  An alternative solution may exist, and we welcome community contributions regarding this issue.
 
 
 ## Contributors
