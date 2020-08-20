@@ -66,7 +66,7 @@ for (const match of matches) {
   console.log('match', match);
 }
 
-console.log(urlRegexSafe().test('github.com'));
+console.log(urlRegexSafe({ exact: true }).test('github.com'));
 ```
 
 ### Browser
@@ -88,7 +88,7 @@ This is the solution for you if you're just using `<script>` tags everywhere!
       console.log('match', matches[i]);
     }
 
-    console.log(urlRegexSafe().test('github.com'));
+    console.log(urlRegexSafe({ exact: true }).test('github.com'));
   })();
 </script>
 ```
