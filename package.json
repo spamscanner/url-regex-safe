@@ -18,11 +18,11 @@
   "dependencies": {
     "ip-regex": "^4.1.0",
     "re2": "^1.15.4",
-    "tlds": "^1.208.0"
+    "tlds": "^1.209.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
-    "@babel/core": "^7.11.1",
+    "@babel/core": "^7.11.4",
     "@babel/preset-env": "^7.11.0",
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
