@@ -93,16 +93,13 @@ test('match URLs in text', (t) => {
 		[and another](https://another.example.com) and
 	`;
 
-  t.deepEqual(
-    [
-      '//bar.net/?q=Query',
-      '//dolor.sit',
-      'http://example.com',
-      'http://example.com/with-path',
-      'https://another.example.com'
-    ],
-    fixture.match(urlRegex({ strict: true }))
-  );
+  t.deepEqual(fixture.match(urlRegex({ strict: true })), [
+    '//bar.net/?q=Query',
+    '//dolor.sit',
+    'http://example.com',
+    'http://example.com/with-path',
+    'https://another.example.com'
+  ]);
 });
 
 for (const x of [
@@ -264,8 +261,8 @@ test('opt out of matching basic auth', (t) => {
 
   // Strict matches none because auth always breaks the url
   t.is(
-    null,
-    textFixture.match(urlRegex({ exact: false, strict: true, auth: false }))
+    textFixture.match(urlRegex({ exact: false, strict: true, auth: false })),
+    null
   );
 
   // Non-strict will only match domain:port/path as auth separates the protocol

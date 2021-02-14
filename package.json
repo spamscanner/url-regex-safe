@@ -16,24 +16,24 @@
     "Diego Perini"
   ],
   "dependencies": {
-    "ip-regex": "^4.1.0",
-    "re2": "^1.15.4",
-    "tlds": "^1.209.0"
+    "ip-regex": "^4.3.0",
+    "re2": "1.15.4",
+    "tlds": "^1.217.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.10.5",
-    "@babel/core": "^7.11.4",
-    "@babel/preset-env": "^7.11.0",
+    "@babel/cli": "^7.12.16",
+    "@babel/core": "^7.12.16",
+    "@babel/preset-env": "^7.12.16",
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
     "ava": "latest",
     "babelify": "^10.0.0",
-    "browserify": "^16.5.2",
+    "browserify": "^17.0.0",
     "codecov": "latest",
     "cross-env": "latest",
     "eslint": "latest",
     "eslint-config-xo-lass": "latest",
-    "eslint-plugin-compat": "^3.8.0",
+    "eslint-plugin-compat": "^3.9.0",
     "eslint-plugin-node": "^11.1.0",
     "fixpack": "latest",
     "husky": "latest",
