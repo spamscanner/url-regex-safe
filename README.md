@@ -100,17 +100,10 @@ Assuming you are using [browserify][], [webpack][], [rollup][], or another bundl
 
 #### TypeScript
 
-This package will not work with [TypeScript](https://www.typescriptlang.org/) by default and would require installation of [@types/url-regex-safe](https://www.npmjs.com/package/@types/url-regex-safe) in addition the main `url-regex-safe` package.
+To use this package with [TypeScript](https://www.typescriptlang.org/), you can install the [`@types/url-regex-safe`](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/url-regex-safe) package for type definitions.
 
 ```sh
-npm install --save @types/url-regex-safe
-```
-
-After the additional package is installed, it will be possible to import the package and use that in a familiar manner.
-
-```ts
-import urlRegexSafe from "url-regex-safe";
-```
+npm install --save-dev @types/url-regex-safe
 
 ## Options
 
