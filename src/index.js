@@ -4,7 +4,8 @@ const tlds = require('tlds');
 /* istanbul ignore next */
 const SafeRegExp = (() => {
   try {
-    return require('re2');
+    const RE2 = require('re2');
+    return typeof RE2 === 'function' ? RE2 : RegExp;
   } catch {
     return RegExp;
   }
