@@ -1,9 +1,15 @@
-const RE2 = require('re2');
 const ipRegex = require('ip-regex');
 const tlds = require('tlds');
 
 /* istanbul ignore next */
-const SafeRegExp = typeof RE2 === 'function' ? RE2 : RegExp;
+const SafeRegExp = (() => {
+  try {
+    const RE2 = require('re2');
+    return typeof RE2 === 'function' ? RE2 : RegExp;
+  } catch {
+    return RegExp;
+  }
+})();
 const ipv4 = ipRegex.v4().source;
 const ipv6 = ipRegex.v6().source;
 
