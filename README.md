@@ -104,6 +104,7 @@ To use this package with [TypeScript](https://www.typescriptlang.org/), you can 
 
 ```sh
 npm install --save-dev @types/url-regex-safe
+```
 
 ## Options
 
