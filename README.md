@@ -131,7 +131,7 @@ Unlike the deprecated and unmaintained package [url-regex][], we do a few things
 
 * We set `strict` to `false` by default ([url-regex][] had this set to `true`)
 * We added an `auth` option, which is set to `false` by default ([url-regex][] matches against Basic Authentication; had this set to `true` - however this is a deprecated behavior in Chromium).
-* We added `parens` and `ipv6` options, which are set to `true` by default ([url-regex][] had `parens` set to `true` and `ipv6` was non-existent or set to `false` rather).
+* We added `parens` and `ipv6` options, which are set to `false` and `true` by default ([url-regex][] had `parens` set to `true` and `ipv6` was non-existent or set to `false` rather).
 * We added an `apostrophe` option, which is set to `false` by default ([url-regex][] had this set to `true`).
 * We added a `trailingPeriod` option, which is set to `false` by default (which means matches won't contain trailing periods, whereas [url-regex][] had this set to `true`).
 
