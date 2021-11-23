@@ -98,6 +98,12 @@ This is the solution for you if you're just using `<script>` tags everywhere!
 
 Assuming you are using [browserify][], [webpack][], [rollup][], or another bundler, you can simply follow [Node](#node) usage above.
 
+#### TypeScript
+
+To use this package with [TypeScript](https://www.typescriptlang.org/), you can install the [`@types/url-regex-safe`](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/url-regex-safe) package for type definitions.
+
+```sh
+npm install --save-dev @types/url-regex-safe
 
 ## Options
 
