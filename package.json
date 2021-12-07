@@ -17,8 +17,15 @@
   ],
   "dependencies": {
     "ip-regex": "^4.3.0",
-    "re2": "^1.16.0",
     "tlds": "^1.217.0"
+  },
+  "peerDependencies": {
+    "re2": "^1.16.0"
+  },
+  "peerDependenciesMeta": {
+    "re2": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@babel/cli": "^7.12.16",
