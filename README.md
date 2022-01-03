@@ -38,16 +38,18 @@ This package should hopefully more closely resemble real-world intended usage of
 
 ## Install
 
+**NOTE:** As of v3.0.0 you must also install `re2` as a peer dependency.
+
 [npm][]:
 
 ```sh
-npm install url-regex-safe
+npm install url-regex-safe re2
 ```
 
 [yarn][]:
 
 ```sh
-yarn add url-regex-safe
+yarn add url-regex-safe re2
 ```
 
 
@@ -105,6 +107,7 @@ To use this package with [TypeScript](https://www.typescriptlang.org/), you can 
 ```sh
 npm install --save-dev @types/url-regex-safe
 ```
+
 
 ## Options
 
