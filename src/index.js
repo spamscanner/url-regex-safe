@@ -45,17 +45,22 @@ module.exports = (options) => {
   })${options.trailingPeriod ? '\\.?' : ''}`;
 
   const port = '(?::\\d{2,5})?';
-  // Not accept closing parenthesis
-  // <https://github.com/kevva/url-regex/pull/35>
-  // Don't allow apostrophes
-  // <https://github.com/kevva/url-regex/pull/55>
-  const path = options.parens
-    ? options.apostrophes
-      ? '(?:[/?#][^\\s"]*)?'
-      : '(?:[/?#][^\\s"\']*)?'
-    : options.apostrophes
-    ? '(?:[/?#][^\\s"\\)]*)?'
-    : '(?:[/?#][^\\s"\\)\']*)?';
+  let disallowedChars = '\\s"';
+  if (!options.parens) {
+    // Not accept closing parenthesis
+    // <https://github.com/kevva/url-regex/pull/35>
+    disallowedChars += '\\)';
+  }
+
+  if (!options.apostrophes) {
+    // Don't allow apostrophes
+    // <https://github.com/kevva/url-regex/pull/55>
+    disallowedChars += "'";
+  }
+
+  const path = options.trailingPeriod
+    ? `(?:[/?#][^${disallowedChars}]*)?`
+    : `(?:(?:[/?#][^${disallowedChars}]*[^${disallowedChars}.?!])|[/])?`;
 
   // Added IPv6 support
   // <https://github.com/kevva/url-regex/issues/60>
