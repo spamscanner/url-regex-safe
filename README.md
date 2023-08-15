@@ -37,18 +37,12 @@ This package should hopefully more closely resemble real-world intended usage of
 
 ## Install
 
-**NOTE:** As of v3.0.0 you must also install `re2` as a peer dependency.
+**NOTE:** The default behavior of this package will attempt to load [re2](https://github.com/uhop/node-re2) (it is an optional peer dependency used to prevent regular expression denial of service attacks and more).  If you wish to use this behavior, you must have `re2` installed via `npm install re2` – otherwise it will fallback to using normal `RegExp` instances.  As of v3.0.1 we added an option if you wish to force this package to not even attempt to load `re2` (e.g. it's in your `node_modules` [but you don't want to use it](https://github.com/spamscanner/url-regex-safe/issues/28)) – simply pass `re2: false` as an option.
 
 [npm][]:
 
 ```sh
-npm install url-regex-safe re2
-```
-
-[yarn][]:
-
-```sh
-yarn add url-regex-safe re2
+npm install url-regex-safe
 ```
 
 
@@ -112,6 +106,7 @@ npm install --save-dev @types/url-regex-safe
 
 | Property         | Type    | Default Value                                                | Description                                                                                                                                                                                                                                                                                                                                                    |   |
 | ---------------- | ------- | ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | - |
+| `re2`            | Boolean | `true`                                                       | Attempt to load `re2` to use instead of `RegExp` for creating new regular expression instances.  If you pass `re2: false`, then `re2` will not even be attempted to be loaded.                                                                                                                                                                                 |   |
 | `exact`          | Boolean | `false`                                                      | Only match an exact String. Useful with `regex.test(str)` to check if a String is a URL. We set this to `false` by default in order to match String values such as `github.com` (as opposed to requiring a protocol or `www` subdomain).  We feel this closely more resembles real-world intended usage of this package.                                       |   |
 | `strict`         | Boolean | `false`                                                      | Force URL's to start with a valid protocol or `www` if set to `true`. If `true`, then it will allow any TLD as long as it is a minimum of 2 valid characters. If it is `false`, then it will match the TLD against the list of valid TLD's using [tlds](https://github.com/stephenmathieson/node-tlds#readme).                                                 |   |
 | `auth`           | Boolean | `false`                                                      | Match against Basic Authentication headers. We set this to `false` by default since [it was deprecated in Chromium](https://bugs.chromium.org/p/chromium/issues/detail?id=82250#c7), and otherwise it leaves the user with unwanted URL matches (more closely resembles real-world intended usage of this package by having it set to `false` by default too). |   |
@@ -140,7 +135,7 @@ Unlike the deprecated and unmaintained package [url-regex][], we do a few things
 
 ## Limitations
 
-Since we cannot use regular expression's "negative lookbehinds" functionality (due to [RE2][] limitations), we could not merge the logic from this [pull request](https://github.com/kevva/url-regex/pull/67/commits/6c31d81c35c3bb72c413c6e4af92a37b2689ead2).  This would have allowed us to make it so `example.jpeg` would match only if it was `example.jp`, however if you pass `example.jpeg` right now it will extract `example.jp` from it (since `.jp` is a TLD).  An alternative solution may exist, and we welcome community contributions regarding this issue.
+**This limitation only applies if you are using `re2`**: Since we cannot use regular expression's "negative lookbehinds" functionality (due to [RE2][] limitations), we could not merge the logic from this [pull request](https://github.com/kevva/url-regex/pull/67/commits/6c31d81c35c3bb72c413c6e4af92a37b2689ead2).  This would have allowed us to make it so `example.jpeg` would match only if it was `example.jp`, however if you pass `example.jpeg` right now it will extract `example.jp` from it (since `.jp` is a TLD).  An alternative solution may exist, and we welcome community contributions regarding this issue.
 
 
 ## Contributors
@@ -160,8 +155,6 @@ Since we cannot use regular expression's "negative lookbehinds" functionality (d
 ##
 
 [npm]: https://www.npmjs.com/
-
-[yarn]: https://yarnpkg.com/
 
 [cve]: https://nvd.nist.gov/vuln/detail/CVE-2020-7661
 

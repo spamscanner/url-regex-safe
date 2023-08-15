@@ -1,20 +1,25 @@
 const ipRegex = require('ip-regex');
 const tlds = require('tlds');
 
-/* istanbul ignore next */
-const SafeRegExp = (() => {
-  try {
-    const RE2 = require('re2');
-    return typeof RE2 === 'function' ? RE2 : RegExp;
-  } catch {
-    return RegExp;
-  }
-})();
 const ipv4 = ipRegex.v4().source;
 const ipv6 = ipRegex.v6().source;
+const host = '(?:(?:[a-z\\u00a1-\\uffff0-9][-_]*)*[a-z\\u00a1-\\uffff0-9]+)';
+const domain = '(?:\\.(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)*';
+const strictTld = '(?:[a-z\\u00a1-\\uffff]{2,})';
+const defaultTlds = `(?:${tlds.sort((a, b) => b.length - a.length).join('|')})`;
+const port = '(?::\\d{2,5})?';
+
+let RE2;
+let hasRE2;
 
 module.exports = (options) => {
   options = {
+    //
+    // attempt to use re2, if set to false will use RegExp
+    // (we did this approach because we don't want to load in-memory re2 if users don't want it)
+    // <https://github.com/spamscanner/url-regex-safe/issues/28>
+    //
+    re2: true,
     exact: false,
     strict: false,
     auth: false,
@@ -24,27 +29,41 @@ module.exports = (options) => {
     trailingPeriod: false,
     ipv4: true,
     ipv6: true,
-    tlds,
     returnString: false,
     ...options
   };
 
+  /* istanbul ignore next */
+  const SafeRegExp =
+    options.re2 && hasRE2 !== false
+      ? (() => {
+          if (typeof RE2 === 'function') return RE2;
+          try {
+            RE2 = require('re2');
+            return typeof RE2 === 'function' ? RE2 : RegExp;
+          } catch {
+            hasRE2 = false;
+            return RegExp;
+          }
+        })()
+      : RegExp;
+
   const protocol = `(?:(?:[a-z]+:)?//)${options.strict ? '' : '?'}`;
+
   // Add option to disable matching urls with HTTP Basic Authentication
   // <https://github.com/kevva/url-regex/pull/63>
   const auth = options.auth ? '(?:\\S+(?::\\S*)?@)?' : '';
-  const host = '(?:(?:[a-z\\u00a1-\\uffff0-9][-_]*)*[a-z\\u00a1-\\uffff0-9]+)';
-  const domain =
-    '(?:\\.(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)*';
+
   // Add ability to pass custom list of tlds
   // <https://github.com/kevva/url-regex/pull/66>
   const tld = `(?:\\.${
     options.strict
-      ? '(?:[a-z\\u00a1-\\uffff]{2,})'
-      : `(?:${options.tlds.sort((a, b) => b.length - a.length).join('|')})`
+      ? strictTld
+      : options.tlds
+      ? `(?:${options.tlds.sort((a, b) => b.length - a.length).join('|')})`
+      : defaultTlds
   })${options.trailingPeriod ? '\\.?' : ''}`;
 
-  const port = '(?::\\d{2,5})?';
   let disallowedChars = '\\s"';
   if (!options.parens) {
     // Not accept closing parenthesis
