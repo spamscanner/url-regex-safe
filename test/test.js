@@ -500,17 +500,77 @@ test('localhost', (t) => {
   );
 });
 
-test('trailing period', (t) => {
-  t.deepEqual(
-    'background example.com. foobar.com'.match(
-      urlRegex({ trailingPeriod: true })
-    ),
-    ['example.com.', 'foobar.com']
-  );
-  t.deepEqual(
-    'background example.com. foobar.com'.match(
-      urlRegex({ trailingPeriod: false })
-    ),
+for (const [source, withTrailingPeriod, withoutTrailingPeriod] of [
+  [
+    'background example.com. foobar.com',
+    ['example.com.', 'foobar.com'],
     ['example.com', 'foobar.com']
-  );
-});
+  ],
+  [
+    'https://example.com/dir.',
+    ['https://example.com/dir.'],
+    ['https://example.com/dir']
+  ],
+  [
+    'https://example.com/dir. ',
+    ['https://example.com/dir.'],
+    ['https://example.com/dir']
+  ],
+  [
+    'https://example.com/dir.\n',
+    ['https://example.com/dir.'],
+    ['https://example.com/dir']
+  ],
+  [
+    'https://example.com/index.html',
+    ['https://example.com/index.html'],
+    ['https://example.com/index.html']
+  ],
+  [
+    'https://example.com/index.html.',
+    ['https://example.com/index.html.'],
+    ['https://example.com/index.html']
+  ],
+  [
+    'https://example.com/dir.with.dot/.',
+    ['https://example.com/dir.with.dot/.'],
+    ['https://example.com/dir.with.dot/']
+  ],
+  // Question marks
+  ['Have you ever visited example.com?', ['example.com?'], ['example.com']],
+  ['example.com/?', ['example.com/?'], ['example.com/']],
+  [
+    'https://example.com/dir?',
+    ['https://example.com/dir?'],
+    ['https://example.com/dir']
+  ],
+  // Exclamation marks
+  ['You should check out example.com!', ['example.com'], ['example.com']],
+  ['Here is example.com/!', ['example.com/!'], ['example.com/']],
+  [
+    'https://example.com/dir/!',
+    ['https://example.com/dir/!'],
+    ['https://example.com/dir/']
+  ],
+  [
+    'https://example.com/dir!',
+    ['https://example.com/dir!'],
+    ['https://example.com/dir']
+  ]
+]) {
+  const sourceTitle = source.replace('\n', '\\n');
+
+  test(`trailingPeriod: true (${sourceTitle})`, (t) => {
+    t.deepEqual(
+      source.match(urlRegex({ trailingPeriod: true })),
+      withTrailingPeriod
+    );
+  });
+
+  test(`trailingPeriod: false (${sourceTitle})`, (t) => {
+    t.deepEqual(
+      source.match(urlRegex({ trailingPeriod: false })),
+      withoutTrailingPeriod
+    );
+  });
+}
