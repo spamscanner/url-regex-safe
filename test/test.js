@@ -1,5 +1,4 @@
 const test = require('ava');
-
 const urlRegex = require('..');
 
 const fixtures = [

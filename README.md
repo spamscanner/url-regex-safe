@@ -1,11 +1,10 @@
 # url-regex-safe
 
-[![build status](https://img.shields.io/travis/com/niftylettuce/url-regex-safe.svg)](https://travis-ci.com/niftylettuce/url-regex-safe)
-[![code coverage](https://img.shields.io/codecov/c/github/niftylettuce/url-regex-safe.svg)](https://codecov.io/gh/niftylettuce/url-regex-safe)
+[![build status](https://github.com/spamscanner/url-regex-safe/actions/workflows/ci.yml/badge.svg)](https://github.com/spamscanner/url-regex-safe/actions/workflows/ci.yml)
 [![code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![made with lass](https://img.shields.io/badge/made_with-lass-95CC28.svg)](https://lass.js.org)
-[![license](https://img.shields.io/github/license/niftylettuce/url-regex-safe.svg)](LICENSE)
+[![license](https://img.shields.io/github/license/spamscanner/url-regex-safe.svg)](LICENSE)
 [![npm downloads](https://img.shields.io/npm/dt/url-regex-safe.svg)](https://npm.im/url-regex-safe)
 
 > Regular expression matching for URL's. Maintained, safe, and browser-friendly version of [url-regex][]. Resolves [CVE-2020-7661][cve] for Node.js servers. Works in Node v10.12.0+ and browsers.
@@ -146,16 +145,16 @@ Since we cannot use regular expression's "negative lookbehinds" functionality (d
 
 ## Contributors
 
-| Name                 | Website                    |
-| -------------------- | -------------------------- |
-| **Nick Baugh**       | <http://niftylettuce.com/> |
-| **Kevin Mårtensson** |                            |
-| **Diego Perini**     |                            |
+| Name                  | Website                    |
+| --------------------- | -------------------------- |
+| **Forward Email LLC** | <https://forwardemail.net> |
+| **Kevin Mårtensson**  |                            |
+| **Diego Perini**      |                            |
 
 
 ## License
 
-[MIT](LICENSE) © [Nick Baugh](http://niftylettuce.com/)
+[MIT](LICENSE) © [Forward Email LLC](https://forwardemail.net)
 
 
 ##
