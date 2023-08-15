@@ -7,7 +7,7 @@
 [![license](https://img.shields.io/github/license/spamscanner/url-regex-safe.svg)](LICENSE)
 [![npm downloads](https://img.shields.io/npm/dt/url-regex-safe.svg)](https://npm.im/url-regex-safe)
 
-> Regular expression matching for URL's. Maintained, safe, and browser-friendly version of [url-regex][]. Resolves [CVE-2020-7661][cve] for Node.js servers. Works in Node >= 14 and browsers.
+> Regular expression matching for URL's. Maintained, safe, and browser-friendly version of [url-regex][]. Resolves [CVE-2020-7661][cve] for Node.js servers. Works in Node v14+ and browsers.  **Maintained for [Spam Scanner][spam-scanner] and [Forward Email][forward-email]**.
 
 
 ## Table of Contents
