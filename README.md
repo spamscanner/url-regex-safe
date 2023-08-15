@@ -7,7 +7,7 @@
 [![license](https://img.shields.io/github/license/spamscanner/url-regex-safe.svg)](LICENSE)
 [![npm downloads](https://img.shields.io/npm/dt/url-regex-safe.svg)](https://npm.im/url-regex-safe)
 
-> Regular expression matching for URL's. Maintained, safe, and browser-friendly version of [url-regex][]. Resolves [CVE-2020-7661][cve] for Node.js servers. Works in Node v10.12.0+ and browsers.
+> Regular expression matching for URL's. Maintained, safe, and browser-friendly version of [url-regex][]. Resolves [CVE-2020-7661][cve] for Node.js servers. Works in Node >= 14 and browsers.
 
 
 ## Table of Contents
@@ -37,7 +37,7 @@ This package should hopefully more closely resemble real-world intended usage of
 
 ## Install
 
-**NOTE:** The default behavior of this package will attempt to load [re2](https://github.com/uhop/node-re2) (it is an optional peer dependency used to prevent regular expression denial of service attacks and more).  If you wish to use this behavior, you must have `re2` installed via `npm install re2` – otherwise it will fallback to using normal `RegExp` instances.  As of v3.0.1 we added an option if you wish to force this package to not even attempt to load `re2` (e.g. it's in your `node_modules` [but you don't want to use it](https://github.com/spamscanner/url-regex-safe/issues/28)) – simply pass `re2: false` as an option.
+**NOTE:** The default behavior of this package will attempt to load [re2](https://github.com/uhop/node-re2) (it is an optional peer dependency used to prevent regular expression denial of service attacks and more).  If you wish to use this behavior, you must have `re2` installed via `npm install re2` – otherwise it will fallback to using normal `RegExp` instances.  As of v4.0.0 we added an option if you wish to force this package to not even attempt to load `re2` (e.g. it's in your `node_modules` [but you don't want to use it](https://github.com/spamscanner/url-regex-safe/issues/28)) – simply pass `re2: false` as an option.
 
 [npm][]:
 
